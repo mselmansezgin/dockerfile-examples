@@ -1,0 +1,12 @@
+version: "2.2"
+services:
+  cis:
+    image: image-custom-controls
+    ports:
+     - "5001:5001"
+  imann_core:
+    image: imann-core
+    ports:
+     - "8085:8085"
+    links:
+      - cis

@@ -1,0 +1,16 @@
+#docker build -t imann-core .
+#docker run -w "/usr/local/imann" imann-core
+FROM openjdk:8
+
+LABEL maintainer="M.Selman SEZGİN <mselmansezgin@gmail.com>"
+
+RUN apt-get update -y && apt-get install maven -y
+
+ADD . /usr/local/imann
+
+WORKDIR /usr/local/imann
+
+RUN mvn install
+
+CMD java -Dspring.profiles.active=production -jar /usr/local/imann/target/imAnn-0.0.1-SNAPSHOT.jar
+
